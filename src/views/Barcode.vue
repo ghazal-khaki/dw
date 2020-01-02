@@ -7,6 +7,11 @@
     >
     <img src="../assets/Img.png" class="image">
     <p class="text2">بارکد شما با موفقیت ثبت شد برای استفاده از بن خود بر روی دکمه زیر کلیک نمایید</p>
+    <div class="read-barcode">
+      <button class="camera"><span class="flaticon-dslr-camera"></span></button>
+      <input class="barcode-value" type="text">
+    </div>
+    <button class="agree">تایید</button>
 
   </div>
 </template>
