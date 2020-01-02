@@ -9,7 +9,6 @@
       srcset="../assets/Digiwash@2x.png 2x, /../Digiwash@3x.png 3x"
     >
     <div class="enterForm">
-      <form>
         <input
           placeholder="نام کاربری"
           class="inputSize userName"
@@ -33,16 +32,14 @@
             id=""
           >
         </div>
-        <input
+        <button
           class="inputSize submit"
-          type="submit"
-          value="ورود"
-        >
-      </form>
+        >ورود</button>
       <p class="text">هر رفع هرگونه مشکل و پشتیبانی با شماره تلفن <span class="phoneNumber">۰۲۱۴۵۱۸۳۰۰۰</span>تماس بگیرید</p>
     </div>
-    <bottomPopUp 
-    v-if="false"/>
+    <bottomPopUp
+    v-if="true"
+    mode="success"/>
   </div>
 </template>
 
