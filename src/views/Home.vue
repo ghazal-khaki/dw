@@ -1,45 +1,59 @@
 <template>
   <div class="home">
     <topPopUp
-    text="رمزعبور وارد شده صحیح نمیباشد"
-    v-if="error" />
+      text="رمزعبور وارد شده صحیح نمیباشد"
+      v-if="error"
+    />
     <img
       class="digilogo"
       src="../assets/Digiwash.png"
       srcset="../assets/Digiwash@2x.png 2x, /../Digiwash@3x.png 3x"
     >
     <div class="enterForm">
+      <span
+        v-if="usernameFocused || username"
+        class="label-username"
+      >نام کاربری</span>
+      <input
+        @focus="usernameFocused = true"
+        @blur="usernameFocused = false"
+        placeholder="نام کاربری"
+        class="inputSize userName"
+        type="text"
+        v-model="username"
+        name=""
+        id=""
+      >
+      <span
+        class="label-username"
+      >رمز عبور</span>
+      <span
+        class="eye flaticon-hide"
+        @click="showPassword"
+      ></span>
+      <input
+        placeholder="رمز عبور"
+        class="inputSize password"
+        type="password"
+        name="password"
+        v-model="password"
+        id=""
+      >
+      <div class="checkbox">
+        <label for="checkbox">مرا به خاطر بسپار</label>
         <input
-          placeholder="نام کاربری"
-          class="inputSize userName"
-          type="text"
-          name=""
+          type="checkbox"
+          name="checkbox"
           id=""
         >
-        <label for="password"></label>
-        <input
-          placeholder="رمز عبور"
-          class="inputSize password"
-          type="password"
-          name="password"
-          id=""
-        >
-        <div class="checkbox">
-          <label for="checkbox">مرا به خاطر بسپار</label>
-          <input
-            type="checkbox"
-            name="checkbox"
-            id=""
-          >
-        </div>
-        <button
-          class="inputSize submit"
-        >ورود</button>
+      </div>
+      <button class="inputSize submit">ورود</button>
       <p class="text">هر رفع هرگونه مشکل و پشتیبانی با شماره تلفن <span class="phoneNumber">۰۲۱۴۵۱۸۳۰۰۰</span>تماس بگیرید</p>
     </div>
     <bottomPopUp
-    v-if="true"
-    mode="success"/>
+      v-if="false"
+      mode="success"
+    />
   </div>
 </template>
 
@@ -50,14 +64,35 @@ import topPopUp from '../components/topPopUp'
 import bottomPopUp from '../components/bottomPopUp'
 export default {
   name: 'home',
-  data() {
+  data () {
     return {
-      error: false
+      showingPassword: false,
+      password: null,
+      username: null,
+      usernameFocused: false,
+      passwordFocused: false,
+      error: false,
+      passHasBeenFocused: false,
+      passShouldBeFocused: false,
+      showingPassIcon: false
     }
   },
   components: {
     topPopUp,
     bottomPopUp
-  }
+  },
+  methods: {
+    showPassword () {
+      document.getElementsByClassName('password')[0].focus()
+      this.showingPassword = !this.showingPassword
+      if (this.showingPassword) {
+        document.getElementsByClassName('eye')[0].classList.remove('flaticon-hide')
+        document.getElementsByClassName('eye')[0].classList.add('flaticon-eye')
+      } else {
+        document.getElementsByClassName('eye')[0].classList.remove('flaticon-eye')
+        document.getElementsByClassName('eye')[0].classList.add('flaticon-hide')
+      }
+    }
+  },
 }
 </script>
