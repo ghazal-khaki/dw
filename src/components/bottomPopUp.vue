@@ -1,21 +1,21 @@
 <template>
-  <div class="bottom-pop-up">
-    <p class="header">{{header}}</p>
-    <p class="text">{{text}}</p>
-    <div
-      v-if="localMode!=='agreement'"
-      class="buttons"
-    >
-      <button class="bigButton">{{buttonValue}}</button>
+    <div class="bottom-pop-up">
+      <p class="header">{{header}}</p>
+      <p class="text">{{text}}</p>
+      <div
+        v-if="localMode!=='agreement'"
+        class="buttons"
+      >
+        <button class="bigButton">{{buttonValue}}</button>
+      </div>
+      <div
+        class="buttons"
+        v-if="localMode==='agreement'"
+      >
+        <button class="agree">تایید</button>
+        <button class="cancel">انصراف</button>
+      </div>
     </div>
-    <div
-      class="buttons"
-      v-if="localMode==='agreement'"
-    >
-      <button class="agree">تایید</button>
-      <button class="cancel">انصراف</button>
-    </div>
-  </div>
 </template>
 
 <script>

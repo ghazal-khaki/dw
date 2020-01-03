@@ -1,5 +1,5 @@
 <template>
-  <div class=" barcode">
+  <div class="barcode">
     <topPopUp
       text="بارکد وارد شده صحیح نمیباشد"
       v-if="error"
@@ -47,10 +47,10 @@
       >استفاده از بن</button>
     </div>
     <bottomPopUp
-    v-if="true"
-    mode="agreement"
+      v-if="bottomPopUp"
+      mode="agreement"
     />
-      <!-- :mode="mode" -->
+    <!-- :mode="mode" -->
   </div>
 </template>
 
@@ -68,7 +68,7 @@ export default {
       barcode: null,
       error: false,
       isReadingBarcode: true,
-      bottomPopUp:false,
+      bottomPopUp: false,
       mode: 0,
     }
   },

@@ -10,8 +10,9 @@
       srcset="../assets/Digiwash@2x.png 2x, /../Digiwash@3x.png 3x"
     >
     <div class="enterForm">
+      <!-- // -->
       <span
-        v-if="usernameFocused || username"
+        v-if="conditionForUsername"
         class="label-username"
       >نام کاربری</span>
       <input
@@ -24,12 +25,17 @@
         name=""
         id=""
       >
-      <span class="label-password">رمز عبور</span>
       <span
+        v-if="conditionForPassword"
+        class="label-password"
+      >رمز عبور</span>
+      <span
+        v-if="conditionForPassword"
         class="eye flaticon-hide"
         @click="showPassword"
       ></span>
       <input
+        @focus="focus = true"
         placeholder="رمز عبور"
         class="inputSize password"
         type="password"
@@ -49,7 +55,7 @@
       <p class="text">هر رفع هرگونه مشکل و پشتیبانی با شماره تلفن <span class="phoneNumber">۰۲۱۴۵۱۸۳۰۰۰</span>تماس بگیرید</p>
     </div>
     <bottomPopUp
-      v-if="true"
+      v-if="false"
       mode="agreement"
     />
   </div>
@@ -72,12 +78,47 @@ export default {
       error: false,
       passHasBeenFocused: false,
       passShouldBeFocused: false,
-      showingPassIcon: false
+      showingPassIcon: false,
+      focus: false
     }
   },
   components: {
     topPopUp,
     bottomPopUp
+  },
+  computed: {
+    conditionForUsername () {
+      return this.usernameFocused || this.username
+    },
+    conditionForPassword () {
+      return this.password || this.focus
+    }
+  },
+  watch: {
+    'conditionForUsername': {
+      handler (newValue) {
+        if (newValue) {
+          document.getElementsByClassName('userName')[0].classList.add('username-visible')
+          document.getElementsByClassName('userName')[0].placeholder = ''
+        } else {
+          document.getElementsByClassName('userName')[0].classList.remove('username-visible')
+          document.getElementsByClassName('userName')[0].placeholder = 'نام کاربری'
+        }
+      }
+    },
+    'conditionForPassword': {
+      handler (newValue) {
+        if (newValue) {
+          document.getElementsByClassName('userName')[0].classList.add('password-visible')
+          document.getElementsByClassName('password')[0].classList.add('password-visible2')
+          document.getElementsByClassName('password')[0].placeholder = ''
+        } else {
+          document.getElementsByClassName('userName')[0].classList.remove('password-visible')
+          document.getElementsByClassName('password')[0].classList.remove('password-visible2')
+          document.getElementsByClassName('password')[0].placeholder = 'رمز عبور'
+        }
+      }
+    }
   },
   methods: {
     showPassword () {
@@ -92,6 +133,12 @@ export default {
         document.getElementsByClassName('eye')[0].classList.add('flaticon-hide')
         document.getElementsByClassName('password')[0].type = "password"
       }
+    },
+  },
+  updated () {
+
+    if (conditionForPassword) {
+
     }
   }
 }
