@@ -2,19 +2,18 @@
   <div class="bottom-pop-up">
     <p class="header">{{header}}</p>
     <p class="text">{{text}}</p>
-    <div class="buttons">
-      <button
-        v-if="localMode!=='agreement'"
-        class="bigButton"
-      >{{buttonValue}}</button>
-      <button
-        v-if="localMode==='agreement'"
-        class="agree"
-      >تایید</button>
-      <button
-        v-if="localMode==='agreement'"
-        class="cancel"
-      >انصراف</button>
+    <div
+      v-if="localMode!=='agreement'"
+      class="buttons"
+    >
+      <button class="bigButton">{{buttonValue}}</button>
+    </div>
+    <div
+      class="buttons"
+      v-if="localMode==='agreement'"
+    >
+      <button class="agree">تایید</button>
+      <button class="cancel">انصراف</button>
     </div>
   </div>
 </template>
@@ -24,7 +23,7 @@
 import '../style/home.sass'
 
 export default {
-  name: 'topPopUp',
+  name: 'bottomPopUp',
   data () {
     return {
       localMode: this.mode
@@ -63,7 +62,7 @@ export default {
   },
   mounted () {
     if (this.localMode === 'success' && document.getElementsByClassName('header')) {
-      document.getElementsByClassName('header')[0].style.color = 'rgb(34,174,48)'
+      document.geplaceholdertElementsByClassName('header')[0].style.color = 'rgb(34,174,48)'
       document.getElementsByClassName('bigButton')[0].style.backgroundColor = 'rgb(34,174,48)'
     } else if (this.localMode === 'failure' && document.getElementsByClassName('header')) {
       document.getElementsByClassName('header')[0].style.color = 'rgb(226,24,24)'
@@ -77,8 +76,9 @@ export default {
 }
 
 </script>
-<style lang="sass">
+<style lang="sass" scoped >
 .bottom-pop-up
+  z-index: 10
   bottom: 0px
   position: fixed
   width: 100%

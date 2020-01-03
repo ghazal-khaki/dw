@@ -24,9 +24,7 @@
         name=""
         id=""
       >
-      <span
-        class="label-username"
-      >رمز عبور</span>
+      <span class="label-password">رمز عبور</span>
       <span
         class="eye flaticon-hide"
         @click="showPassword"
@@ -51,8 +49,8 @@
       <p class="text">هر رفع هرگونه مشکل و پشتیبانی با شماره تلفن <span class="phoneNumber">۰۲۱۴۵۱۸۳۰۰۰</span>تماس بگیرید</p>
     </div>
     <bottomPopUp
-      v-if="false"
-      mode="success"
+      v-if="true"
+      mode="agreement"
     />
   </div>
 </template>
@@ -88,11 +86,13 @@ export default {
       if (this.showingPassword) {
         document.getElementsByClassName('eye')[0].classList.remove('flaticon-hide')
         document.getElementsByClassName('eye')[0].classList.add('flaticon-eye')
+        document.getElementsByClassName('password')[0].type = "text"
       } else {
         document.getElementsByClassName('eye')[0].classList.remove('flaticon-eye')
         document.getElementsByClassName('eye')[0].classList.add('flaticon-hide')
+        document.getElementsByClassName('password')[0].type = "password"
       }
     }
-  },
+  }
 }
 </script>
